@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<meta charset="utf-8" /> 
+
+      <title>CSS from JS </title>
+<html>
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+        #box {
+        position :absolute;
+        background:orange;
+        border :10px solid red;
+        }
+        </style>
+
+    <script src="OSC.js"></script>
+
+
+<h1>Accediento CSS desde JS </h1>
+
+
+</head>
+
+<body>
+
+<div id='myobj'>Some Text </div>
+<div class='myclass'> DIV contents</div>
+<div class='myclass'>Paragraph contents</div>
+
+<div id='object'>Div Object</div>
+
+<script>
+/*
+O('myobj').style.color ='green'
+
+
+
+fred = O('myobj')
+S(fred).color = 'red'
+S(fred).fontSize = '20pt'
+// myobject.setAttribute('style', 'font-size:16pt')
+
+myarray = C('myclass')
+
+for (i=0; i< myarray.length ; ++i ){
+S(myarray[i]).textDecoration = 'underline'
+}
+*/
+
+
+S('object').border = 'solid 1px red'
+S('object').width = '100px'
+S('object').height = '100px'
+S('object').background = '#eee'
+S('object').color = 'blue'
+S('object').fontSize = '15pt'
+S('object').fontFamily = 'Helvetica'
+S('object').fontStyle = 'italic'
+
+
+</Script>
+
+<h2>Inline desde javascript</h2>
+
+<img src="/media/apple.png"
+
+onmouseover ="this.src='/media/orange.jpg'"
+onmouseout="this.src='/media/apple.png'"
+>
+
+<!-- Lo anterior es equivalente a 
+
+    <script>
+O('object').onmouseover = function() { this.src = 'orange.png' }
+O('object').onmouseout = function() { this.src = 'apple.png' }
+ </script>
+
+
+
+-->
+<h2 > Adicionando elementos </h2>
+
+<script>
+
+/*
+alert('Click Ok para añadir nuevo elemento')
+
+newdiv = document.createElement('div')
+newdiv.id ='NewDiv'
+document.body.appendChild(newdiv)
+
+S(newdiv).border = 'solid 1px red'
+S(newdiv).width = '100px'
+S(NewDiv).height = '100px'
+newdiv.innerHTML ='Soy el nuevo objeto insertado en el DOM'
+
+
+// eliminar DIV 
+
+
+tmp = newdiv.offsetTop
+
+alert('Click Ok para eliminar elemento')
+pnode = newdiv.parentNode
+pnode.removeChild(newdiv)
+tmp = pnode.offsetTop
+
+*/
+
+
+function dothis(){
+
+    alert('this is your wakeup alert!')
+
+}
+
+// setTimeout(dothis,5000)
+
+// igual en cadena: setTimeout("alert('Hello!')", 5000)
+
+/*  se puede utilizar tantas lineas de codigo separadas por ;
+
+setTimeout("document.write('Starting'); alert('Hello!')", 5000)
+
+*/
+
+
+//handle = setTimeout(dothis, 5000)
+
+//clearTimeout(handle)
+
+//handle2 = setInterval("showtime(O('time'))",1000)
+
+// cancelacion con clearInterval(handle2)
+
+function showtime(object){
+
+        var date = new Date()
+        object.innerHTML = date.toTimeString().substr(0,8)
+
+}
+
+
+SIZE = LEFT = 0
+animateBox = setInterval(animate, 50)
+
+function animate()
+{
+SIZE += 10
+LEFT += 3
+if (SIZE == 200) SIZE = 0
+if (LEFT == 600) LEFT = 0
+S('box').width = SIZE + 'px'
+S('box').height = SIZE + 'px'
+S('box').left = LEFT + 'px'
+}
+
+//para cancelar 
+clearInterval(animateBox)
+
+</script>
+
+This time is : <spa id='time'>00:00:00</spa><br>
+
+
+
+
+<h2>Simple animacion</h2>
+
+
+<div id='box'> </div>
+
+<br> <br> <br>
+The jQuery library uses either the <code>$()</code>
+or <code>jQuery()</code> function names.
+
+</body>
+
+<script>
+
+/*
+$.noConflict()*/
+
+jq = $.noConflict() 
+
+// CODIGO JQUERY 
+jq('code').css('border','1px solid red')
+
+
+</script>
+
+</html>
